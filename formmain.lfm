@@ -7,6 +7,8 @@ object MainForm: TMainForm
   ClientHeight = 281
   ClientWidth = 500
   Menu = MainFormMenu
+  OnClose = FormClose
+  OnCreate = FormCreate
   LCLVersion = '2.0.10.0'
   object LabelCalcAlgorithm: TLabel
     Left = 16
@@ -117,18 +119,21 @@ object MainForm: TMainForm
       Caption = 'Файл'
       object MainFormMenuSettings: TMenuItem
         Caption = 'Параметры'
+        OnClick = MainFormMenuSettingsClick
       end
       object MainFormMenuSeparator1: TMenuItem
         Caption = '-'
       end
       object MainFormMenuExit: TMenuItem
         Caption = 'Выход'
+        OnClick = MainFormMenuExitClick
       end
     end
     object MainFormMenuHelp: TMenuItem
       Caption = 'Справка'
       object MainFormMenuAbout: TMenuItem
         Caption = 'О программе'
+        OnClick = MainFormMenuAboutClick
       end
     end
   end

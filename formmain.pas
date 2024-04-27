@@ -5,7 +5,7 @@ unit FormMain;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls, md5;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls, md5, FormSettings, IniFiles;
 
 type
 
@@ -34,6 +34,11 @@ type
     procedure ButtonHashCalcClick(Sender: TObject);
     procedure ButtonOpenFileClick(Sender: TObject);
     procedure CheckHash();
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure MainFormMenuAboutClick(Sender: TObject);
+    procedure MainFormMenuExitClick(Sender: TObject);
+    procedure MainFormMenuSettingsClick(Sender: TObject);
   private
 
   public
@@ -77,6 +82,74 @@ begin
     if HashExpectation.Text = HashResult.Text then HashResult.Color:= clGreen
     else HashResult.Color:= clRed;
   end;
+end;
+
+procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+var
+  IniFile: TIniFile;
+begin
+  IniFile:= TIniFile.Create('app.ini');
+  IniFile.WriteInteger('Position', 'X', MainForm.Left);
+  IniFile.WriteInteger('Position', 'Y', MainForm.Top);
+  IniFile.WriteInteger('Size', 'Width', MainForm.Width);
+  IniFile.WriteInteger('Size', 'Height', MainForm.Height);
+  IniFile.Free;
+end;
+
+procedure TMainForm.FormCreate(Sender: TObject);
+var
+  IniFile: TIniFile;
+begin
+  if FileExists('app.ini') = False then
+    begin
+      IniFile:= TIniFile.Create('app.ini');
+      IniFile.WriteString('Exts', 'MD5', 'md5');
+      IniFile.WriteInteger('Position', 'X', 25);
+      IniFile.WriteInteger('Position', 'Y', 25);
+      IniFile.WriteInteger('Size', 'Width', 500);
+      IniFile.WriteInteger('Size', 'Height', 310);
+      IniFile.Free;
+    end;
+
+    IniFile:= TIniFile.Create('app.ini');
+    MainForm.Left:= IniFile.ReadInteger('Position', 'X', 25);
+    MainForm.Top:= IniFile.ReadInteger('Position', 'Y', 25);
+    MainForm.Width:= IniFile.ReadInteger('Size', 'Width', 500);
+    MainForm.Height:= IniFile.ReadInteger('Size', 'Height', 310);
+    IniFile.Free;
+end;
+
+procedure TMainForm.MainFormMenuAboutClick(Sender: TObject);
+begin
+
+end;
+
+procedure TMainForm.MainFormMenuExitClick(Sender: TObject);
+begin
+  MainForm.Close;
+end;
+
+procedure TMainForm.MainFormMenuSettingsClick(Sender: TObject);
+var
+  IniFile: TIniFile;
+begin
+  SettingsForm.PositionX.Value:= MainForm.Left;
+  SettingsForm.PositionY.Value:= MainForm.Top;
+  SettingsForm.SizeWidth.Value:= MainForm.Width;
+  SettingsForm.SizeHeight.Value:= MainForm.Height;
+  CancelPositionX:= MainForm.Left;
+  CancelPositionY:= MainForm.Top;
+  CancelSizeWidth:= MainForm.Width;
+  CancelSizeHeight:= MainForm.Height;
+
+  SettingsForm.ShowModal;
+
+  IniFile:= TIniFile.Create('app.ini');
+  MainForm.Left:= IniFile.ReadInteger('Position', 'X', 25);
+  MainForm.Top:= IniFile.ReadInteger('Position', 'Y', 25);
+  MainForm.Width:= IniFile.ReadInteger('Size', 'Width', 500);
+  MainForm.Height:= IniFile.ReadInteger('Size', 'Height', 310);
+  IniFile.Free;
 end;
 
 end.

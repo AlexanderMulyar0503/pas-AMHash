@@ -1,0 +1,163 @@
+object SettingsForm: TSettingsForm
+  Left = 392
+  Height = 440
+  Top = 275
+  Width = 300
+  Caption = 'Параметры'
+  ClientHeight = 440
+  ClientWidth = 300
+  Position = poMainFormCenter
+  LCLVersion = '2.0.10.0'
+  object GroupExts: TGroupBox
+    Left = 15
+    Height = 89
+    Top = 8
+    Width = 273
+    Anchors = [akTop, akLeft, akRight]
+    Caption = 'Расширения файлов'
+    ClientHeight = 69
+    ClientWidth = 271
+    TabOrder = 0
+    object LabelExtMD5: TLabel
+      Left = 15
+      Height = 17
+      Top = 24
+      Width = 86
+      Caption = 'MD5               *.'
+      ParentColor = False
+    end
+    object ExtMD5: TEdit
+      Left = 112
+      Height = 30
+      Top = 24
+      Width = 152
+      Anchors = [akTop, akLeft, akRight]
+      TabOrder = 0
+      Text = 'md5'
+    end
+  end
+  object GroupPosition: TGroupBox
+    Left = 14
+    Height = 128
+    Top = 112
+    Width = 273
+    Anchors = [akTop, akLeft, akRight]
+    Caption = 'Положение формы'
+    ClientHeight = 108
+    ClientWidth = 271
+    TabOrder = 1
+    object LabelPositionX: TLabel
+      Left = 16
+      Height = 17
+      Top = 24
+      Width = 8
+      Caption = 'X'
+      ParentColor = False
+    end
+    object LabelPositionY: TLabel
+      Left = 16
+      Height = 17
+      Top = 64
+      Width = 8
+      Caption = 'Y'
+      ParentColor = False
+    end
+    object PositionX: TSpinEdit
+      Left = 113
+      Height = 28
+      Top = 24
+      Width = 145
+      Anchors = [akTop, akLeft, akRight]
+      MaxValue = 8000
+      TabOrder = 0
+      Value = 25
+    end
+    object PositionY: TSpinEdit
+      Left = 113
+      Height = 28
+      Top = 64
+      Width = 143
+      Anchors = [akTop, akLeft, akRight]
+      MaxValue = 8000
+      TabOrder = 1
+      Value = 25
+    end
+  end
+  object GroupSize: TGroupBox
+    Left = 16
+    Height = 129
+    Top = 256
+    Width = 272
+    Anchors = [akTop, akLeft, akRight]
+    Caption = 'Размер формы'
+    ClientHeight = 109
+    ClientWidth = 270
+    TabOrder = 2
+    object SizeWidth: TSpinEdit
+      Left = 112
+      Height = 28
+      Top = 24
+      Width = 142
+      Anchors = [akTop, akLeft, akRight]
+      MaxValue = 8000
+      TabOrder = 0
+      Value = 500
+    end
+    object SizeHeight: TSpinEdit
+      Left = 111
+      Height = 28
+      Top = 65
+      Width = 143
+      Anchors = [akTop, akLeft, akRight]
+      MaxValue = 8000
+      TabOrder = 1
+      Value = 310
+    end
+    object LabelSizeWidth: TLabel
+      Left = 14
+      Height = 17
+      Top = 24
+      Width = 56
+      Caption = 'Ширина'
+      ParentColor = False
+    end
+    object LabelSizeHeight: TLabel
+      Left = 14
+      Height = 17
+      Top = 65
+      Width = 46
+      Caption = 'Высота'
+      ParentColor = False
+    end
+  end
+  object ButtonDefault: TButton
+    Left = 16
+    Height = 25
+    Top = 400
+    Width = 120
+    Anchors = [akLeft, akRight, akBottom]
+    Caption = 'По умолчанию'
+    OnClick = ButtonDefaultClick
+    TabOrder = 3
+  end
+  object ButtonOK: TButton
+    Left = 144
+    Height = 25
+    Top = 400
+    Width = 70
+    Anchors = [akRight, akBottom]
+    Caption = 'ОК'
+    OnClick = ButtonOKClick
+    TabOrder = 4
+  end
+  object ButtonCancel: TButton
+    Left = 218
+    Height = 25
+    Top = 400
+    Width = 70
+    Anchors = [akRight, akBottom]
+    Caption = 'Отмена'
+    OnClick = ButtonCancelClick
+    TabOrder = 5
+  end
+end

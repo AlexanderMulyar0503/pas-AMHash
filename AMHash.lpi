@@ -78,7 +78,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="2">
+    <Units Count="3">
       <Unit0>
         <Filename Value="AMHash.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -91,6 +91,13 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="FormMain"/>
       </Unit1>
+      <Unit2>
+        <Filename Value="formsettings.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SettingsForm"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FormSettings"/>
+      </Unit2>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
