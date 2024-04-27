@@ -54,6 +54,7 @@ object MainForm: TMainForm
     Width = 75
     Anchors = [akTop, akRight]
     Caption = 'Открыть'
+    OnClick = ButtonOpenFileClick
     TabOrder = 2
   end
   object ButtonHashCalc: TButton
@@ -63,6 +64,7 @@ object MainForm: TMainForm
     Width = 468
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Вычислить контрольную сумму'
+    OnClick = ButtonHashCalcClick
     TabOrder = 3
   end
   object LabelExpectation: TLabel
