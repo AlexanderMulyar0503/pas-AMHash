@@ -1,0 +1,10 @@
+AMHash_gtk
+AMHash_qt
+AMHash.exe
+
+backup/
+lib/
+
+*.lps
+*.res
+*.ini
