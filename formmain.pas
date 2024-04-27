@@ -5,7 +5,7 @@ unit FormMain;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls, md5, FormSettings, IniFiles;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls, md5, FormSettings, FormAbout, IniFiles;
 
 type
 
@@ -121,7 +121,7 @@ end;
 
 procedure TMainForm.MainFormMenuAboutClick(Sender: TObject);
 begin
-
+  AboutForm.ShowModal;
 end;
 
 procedure TMainForm.MainFormMenuExitClick(Sender: TObject);
