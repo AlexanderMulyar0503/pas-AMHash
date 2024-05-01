@@ -111,6 +111,7 @@ object MainForm: TMainForm
     Width = 165
     Anchors = [akRight, akBottom]
     Caption = 'Сохранить результат'
+    OnClick = ButtonSaveInFileClick
     TabOrder = 6
   end
   object MainFormMenu: TMainMenu

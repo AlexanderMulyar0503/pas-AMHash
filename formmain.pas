@@ -33,6 +33,7 @@ type
     OpenFileDialog: TOpenDialog;
     procedure ButtonHashCalcClick(Sender: TObject);
     procedure ButtonOpenFileClick(Sender: TObject);
+    procedure ButtonSaveInFileClick(Sender: TObject);
     procedure CheckHash();
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -57,6 +58,25 @@ implementation
 procedure TMainForm.ButtonOpenFileClick(Sender: TObject);
 begin
   if OpenFileDialog.Execute then FilePath.Text:= OpenFileDialog.FileName;
+end;
+
+procedure TMainForm.ButtonSaveInFileClick(Sender: TObject);
+var
+  IniFile: TIniFile;
+  HashFile: TextFile;
+begin
+  if (FileExists(FilePath.Text)) and (Length(HashResult.Text) > 0) then
+  begin
+    IniFile:= TIniFile.Create('app.ini');
+    AssignFile(HashFile, FilePath.Text + '.' + IniFile.ReadString('Exts', 'MD5', 'md5'));
+    Rewrite(HashFile);
+
+    Write(HashFile, HashResult.Text + ' ' + ExtractFileName(FilePath.Text));
+    ShowMessage('Сохранено в ' + FilePath.Text + '.' + IniFile.ReadString('Exts', 'MD5', 'md5'));
+
+    CloseFile(HashFile);
+    IniFile.Free;
+  end;
 end;
 
 procedure TMainForm.ButtonHashCalcClick(Sender: TObject);
