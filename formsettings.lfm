@@ -15,8 +15,8 @@ object SettingsForm: TSettingsForm
     Width = 273
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Расширения файлов'
-    ClientHeight = 69
-    ClientWidth = 271
+    ClientHeight = 68
+    ClientWidth = 269
     TabOrder = 0
     object LabelExtMD5: TLabel
       Left = 15
@@ -28,9 +28,9 @@ object SettingsForm: TSettingsForm
     end
     object ExtMD5: TEdit
       Left = 112
-      Height = 30
+      Height = 26
       Top = 24
-      Width = 152
+      Width = 150
       Anchors = [akTop, akLeft, akRight]
       TabOrder = 0
       Text = 'md5'
@@ -43,8 +43,8 @@ object SettingsForm: TSettingsForm
     Width = 273
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Положение формы'
-    ClientHeight = 108
-    ClientWidth = 271
+    ClientHeight = 107
+    ClientWidth = 269
     TabOrder = 1
     object LabelPositionX: TLabel
       Left = 16
@@ -64,9 +64,9 @@ object SettingsForm: TSettingsForm
     end
     object PositionX: TSpinEdit
       Left = 113
-      Height = 28
+      Height = 26
       Top = 24
-      Width = 145
+      Width = 143
       Anchors = [akTop, akLeft, akRight]
       MaxValue = 8000
       TabOrder = 0
@@ -74,9 +74,9 @@ object SettingsForm: TSettingsForm
     end
     object PositionY: TSpinEdit
       Left = 113
-      Height = 28
+      Height = 26
       Top = 64
-      Width = 143
+      Width = 141
       Anchors = [akTop, akLeft, akRight]
       MaxValue = 8000
       TabOrder = 1
@@ -90,14 +90,14 @@ object SettingsForm: TSettingsForm
     Width = 272
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Размер формы'
-    ClientHeight = 109
-    ClientWidth = 270
+    ClientHeight = 108
+    ClientWidth = 268
     TabOrder = 2
     object SizeWidth: TSpinEdit
       Left = 112
-      Height = 28
+      Height = 26
       Top = 24
-      Width = 142
+      Width = 140
       Anchors = [akTop, akLeft, akRight]
       MaxValue = 8000
       TabOrder = 0
@@ -105,9 +105,9 @@ object SettingsForm: TSettingsForm
     end
     object SizeHeight: TSpinEdit
       Left = 111
-      Height = 28
+      Height = 26
       Top = 65
-      Width = 143
+      Width = 141
       Anchors = [akTop, akLeft, akRight]
       MaxValue = 8000
       TabOrder = 1
