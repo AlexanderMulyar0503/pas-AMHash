@@ -17,17 +17,7 @@ type
     ButtonCancel: TButton;
     ExtMD5: TEdit;
     GroupExts: TGroupBox;
-    GroupPosition: TGroupBox;
-    GroupSize: TGroupBox;
     LabelExtMD5: TLabel;
-    LabelPositionX: TLabel;
-    LabelPositionY: TLabel;
-    LabelSizeWidth: TLabel;
-    LabelSizeHeight: TLabel;
-    PositionX: TSpinEdit;
-    PositionY: TSpinEdit;
-    SizeWidth: TSpinEdit;
-    SizeHeight: TSpinEdit;
     procedure ButtonCancelClick(Sender: TObject);
     procedure ButtonDefaultClick(Sender: TObject);
     procedure ButtonOKClick(Sender: TObject);
@@ -39,8 +29,7 @@ type
 
 var
   SettingsForm: TSettingsForm;
-  CancelPositionX, CancelPositionY: Integer;
-  CancelSizeWidth, CancelSizeHeight: Integer;
+
 
 implementation
 
@@ -63,15 +52,7 @@ begin
 end;
 
 procedure TSettingsForm.ButtonCancelClick(Sender: TObject);
-var
-  IniFile: TIniFile;
 begin
-  IniFile:= TIniFile.Create(GetUserDir + DirectorySeparator + '.amhash.ini');
-  IniFile.WriteInteger('Position', 'X', CancelPositionX);
-  IniFile.WriteInteger('Position', 'Y', CancelPositionY);
-  IniFile.WriteInteger('Size', 'Width', CancelSizeWidth);
-  IniFile.WriteInteger('Size', 'Height', CancelSizeHeight);
-  IniFile.Free;
   SettingsForm.Close;
 end;
 
@@ -81,10 +62,6 @@ var
 begin
   IniFile:= TIniFile.Create(GetUserDir + DirectorySeparator + '.amhash.ini');
   IniFile.WriteString('Exts', 'MD5', ExtMD5.Text);
-  IniFile.WriteInteger('Position', 'X', PositionX.Value);
-  IniFile.WriteInteger('Position', 'Y', positiony.Value);
-  IniFile.WriteInteger('Size', 'Width', SizeWidth.Value);
-  IniFile.WriteInteger('Size', 'Height', SizeHeight.Value);
   IniFile.Free;
   SettingsForm.Close;
 end;

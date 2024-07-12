@@ -48,6 +48,7 @@ type
 
 var
   MainForm: TMainForm;
+  IniFile: TIniFile;
 
 implementation
 
@@ -62,12 +63,10 @@ end;
 
 procedure TMainForm.ButtonSaveInFileClick(Sender: TObject);
 var
-  IniFile: TIniFile;
   HashFile: TextFile;
 begin
   if (FileExists(FilePath.Text)) and (Length(HashResult.Text) > 0) then
   begin
-    IniFile:= TIniFile.Create(GetUserDir + DirectorySeparator + '.amhash.ini');
     AssignFile(HashFile, FilePath.Text + '.' + IniFile.ReadString('Exts', 'MD5', 'md5'));
     Rewrite(HashFile);
 
@@ -75,7 +74,6 @@ begin
     ShowMessage('Сохранено в ' + FilePath.Text + '.' + IniFile.ReadString('Exts', 'MD5', 'md5'));
 
     CloseFile(HashFile);
-    IniFile.Free;
   end;
 end;
 
@@ -105,38 +103,19 @@ begin
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-var
-  IniFile: TIniFile;
 begin
-  IniFile:= TIniFile.Create(GetUserDir + DirectorySeparator + '.amhash.ini');
   IniFile.WriteInteger('Position', 'X', MainForm.Left);
   IniFile.WriteInteger('Position', 'Y', MainForm.Top);
   IniFile.WriteInteger('Size', 'Width', MainForm.Width);
   IniFile.WriteInteger('Size', 'Height', MainForm.Height);
-  IniFile.Free;
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
-var
-  IniFile: TIniFile;
 begin
-  if FileExists(GetUserDir + DirectorySeparator + '.amhash.ini') = False then
-    begin
-      IniFile:= TIniFile.Create(GetUserDir + DirectorySeparator + '.amhash.ini');
-      IniFile.WriteString('Exts', 'MD5', 'md5');
-      IniFile.WriteInteger('Position', 'X', 25);
-      IniFile.WriteInteger('Position', 'Y', 25);
-      IniFile.WriteInteger('Size', 'Width', 500);
-      IniFile.WriteInteger('Size', 'Height', 310);
-      IniFile.Free;
-    end;
-
-    IniFile:= TIniFile.Create(GetUserDir + DirectorySeparator + '.amhash.ini');
-    MainForm.Left:= IniFile.ReadInteger('Position', 'X', 25);
-    MainForm.Top:= IniFile.ReadInteger('Position', 'Y', 25);
-    MainForm.Width:= IniFile.ReadInteger('Size', 'Width', 500);
-    MainForm.Height:= IniFile.ReadInteger('Size', 'Height', 310);
-    IniFile.Free;
+  MainForm.Left:= IniFile.ReadInteger('Position', 'X', 25);
+  MainForm.Top:= IniFile.ReadInteger('Position', 'Y', 25);
+  MainForm.Width:= IniFile.ReadInteger('Size', 'Width', 500);
+  MainForm.Height:= IniFile.ReadInteger('Size', 'Height', 310);
 end;
 
 procedure TMainForm.MainFormMenuAboutClick(Sender: TObject);
@@ -150,27 +129,43 @@ begin
 end;
 
 procedure TMainForm.MainFormMenuSettingsClick(Sender: TObject);
-var
-  IniFile: TIniFile;
 begin
-  SettingsForm.PositionX.Value:= MainForm.Left;
-  SettingsForm.PositionY.Value:= MainForm.Top;
-  SettingsForm.SizeWidth.Value:= MainForm.Width;
-  SettingsForm.SizeHeight.Value:= MainForm.Height;
-  CancelPositionX:= MainForm.Left;
-  CancelPositionY:= MainForm.Top;
-  CancelSizeWidth:= MainForm.Width;
-  CancelSizeHeight:= MainForm.Height;
+  IniFile.WriteInteger('Position', 'X', MainForm.Left);
+  IniFile.WriteInteger('Position', 'Y', MainForm.Top);
+  IniFile.WriteInteger('Size', 'Width', MainForm.Width);
+  IniFile.WriteInteger('Size', 'Height', MainForm.Height);
 
+  IniFile.Free;
   SettingsForm.ShowModal;
-
   IniFile:= TIniFile.Create(GetUserDir + DirectorySeparator + '.amhash.ini');
+
   MainForm.Left:= IniFile.ReadInteger('Position', 'X', 25);
   MainForm.Top:= IniFile.ReadInteger('Position', 'Y', 25);
   MainForm.Width:= IniFile.ReadInteger('Size', 'Width', 500);
   MainForm.Height:= IniFile.ReadInteger('Size', 'Height', 310);
+end;
+
+
+initialization
+
+if FileExists(GetUserDir + DirectorySeparator + '.amhash.ini') = False then
+begin
+  IniFile:= TIniFile.Create(GetUserDir + DirectorySeparator + '.amhash.ini');
+  IniFile.WriteString('Exts', 'MD5', 'md5');
+  IniFile.WriteInteger('Position', 'X', 25);
+  IniFile.WriteInteger('Position', 'Y', 25);
+  IniFile.WriteInteger('Size', 'Width', 500);
+  IniFile.WriteInteger('Size', 'Height', 310);
   IniFile.Free;
 end;
+
+IniFile:= TIniFile.Create(GetUserDir + DirectorySeparator + '.amhash.ini');
+
+
+finalization
+
+IniFile.Free;
+
 
 end.
 
